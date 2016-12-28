@@ -1,0 +1,50 @@
+<root>
+   <name>Father</name>
+   <key>father</key>
+   <state>stable</state>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/xxx/master/icon.png</logo>
+   <description>
+      <short>
+	      <fr>Ajouts d'une notion de père/fils entre les tickets.</fr>
+      </short>
+      <long>
+         <fr>
+* Ajout d'un champ aux tickets, changements ou problémes de GLPI (étendant CommonDBTM).
+* Les objets impactés sont administrables.
+* Le champ "père" est visibles et modifiables en entête de l'objet (en dessous du titre).
+* Le champ "père" peuvent être recherchés et visualisés dans les listes d'objet
+
+         </fr>
+      </long>
+   </description>
+   <homepage>https://github.com/pluginsGLPI/xxx</homepage>
+   <download>https://github.com/pluginsGLPI/xxx/releases</download>
+   <issues>https://github.com/pluginsGLPI/xxx/issues</issues>
+   <readme>https://github.com/pluginsGLPI/xxx/blob/master/README.md</readme>
+   <authors>
+      <author>PROBESYS</author>
+      <author>Zorm</author>
+   </authors>
+   <versions>
+      <version>
+         <num>0.90</num>
+         <compatibility>9.1</compatibility>
+      </version>
+   </versions>
+   <langs>
+      <lang>en_GB</lang>
+      <lang>fr_FR</lang>
+   </langs>
+   <license>GPL v3+</license>
+   <tags>
+      <fr>
+         <tag>Ticket</tag>
+      </fr>
+      <en>
+         <tag>Ticket</tag>
+      </en>
+   </tags>
+   <screenshots>
+      <screenshot>https://raw.githubusercontent.com/pluginsGLPI/xxx/master/screenshot.png</screenshot>
+   </screenshots>
+</root>
