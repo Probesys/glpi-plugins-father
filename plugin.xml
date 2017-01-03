@@ -17,10 +17,10 @@
          </fr>
       </long>
    </description>
-   <homepage>https://github.com/pluginsGLPI/xxx</homepage>
-   <download>https://github.com/pluginsGLPI/xxx/releases</download>
-   <issues>https://github.com/pluginsGLPI/xxx/issues</issues>
-   <readme>https://github.com/pluginsGLPI/xxx/blob/master/README.md</readme>
+   <homepage>https://github.com/Probesys/glpi-plugins-father</homepage>
+   <download>https://github.com/Probesys/glpi-plugins-father/releases</download>
+   <issues>https://github.com/Probesys/glpi-plugins-father/issues</issues>
+   <readme>https://github.com/Probesys/glpi-plugins-father/README.md</readme>
    <authors>
       <author>PROBESYS</author>
       <author>Zorm</author>
@@ -44,7 +44,4 @@
          <tag>Ticket</tag>
       </en>
    </tags>
-   <screenshots>
-      <screenshot>https://raw.githubusercontent.com/pluginsGLPI/xxx/master/screenshot.png</screenshot>
-   </screenshots>
 </root>
