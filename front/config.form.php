@@ -14,7 +14,11 @@ if ($plugin->isActivated("father")) {
       } else {
          $_POST['father_ids'] = exportArrayToDB(array());
       }
-
+      if (isset($_POST['statut_impacted'])) {
+         $_POST['statut_impacted'] = exportArrayToDB($_POST['statut_impacted']);
+      } else {
+         $_POST['statut_impacted'] = exportArrayToDB(array());
+      }
       $config->update($_POST);
       //Update singelton
       PluginFatherConfig::getConfig(true);

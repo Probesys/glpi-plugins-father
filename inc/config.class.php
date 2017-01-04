@@ -107,6 +107,31 @@ class PluginFatherConfig extends CommonDBTM
       Dropdown::showFromArray('father_ids', $item_ids, array('multiple' => true, 'values' => importArrayFromDB($this->fields["father_ids"])));
       echo "</td>";
       echo "</tr>";
+      
+      echo "<tr>";
+      echo "<td>";
+      echo __("Status impacted", "father");
+      echo "</td>";
+      echo "<td >";
+      $status_imp = Ticket::getAllStatusArray();
+      Dropdown::showFromArray('statut_impacted', $status_imp, array('multiple' => true, 'values' => importArrayFromDB($this->fields["statut_impacted"])));
+ 
+      echo "</td>";
+      echo "</tr>";
+
+ 
+
+      echo "<tr>";
+      echo "<td>";
+      echo __("Copy Solution on all ticket's son", "father");
+      echo "</td>";
+      echo "<td >";
+      Dropdown::showYesNo("copy_solution",$this->fields['copy_solution']);
+ 
+      echo "</td>";
+      echo "</tr>";
+
+      
       echo "<tr class='tab_bg_1' align='center'>";
       echo "<tr class='tab_bg_1' align='center'>";
       echo "<td colspan='2' align='center'>";
@@ -118,8 +143,15 @@ class PluginFatherConfig extends CommonDBTM
       Html::closeForm();
       echo "</div>";
    }
+   
+   function isSolutionOk() {
+       return in_array(5,importArrayFromDB($this->fields['statut_impacted']));
+   }
 
-
+   function isStatusImpacted($status)
+   {
+           return in_array($status,importArrayFromDB($this->fields['statut_impacted']));
+   }
 
    static function getValuesFatherItems()
    {
