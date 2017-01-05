@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: father\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-28 09:02+0100\n"
+"POT-Creation-Date: 2017-01-05 19:31+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,22 +17,30 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: hook.php:57 ajax/father.php:10
-msgid "Father"
+#: hook.php:67 ajax/father.php:10
+msgid "Father type"
 msgstr ""
 
-#: setup.php:35
-msgid "I'm your father"
+#: setup.php:46
+msgid "Father&Sons"
 msgstr ""
 
-#: front/config.form.php:33
+#: front/config.form.php:37
 msgid "Please activate the plugin"
 msgstr ""
 
-#: inc/config.class.php:92
+#: inc/config.class.php:97
 msgid "Plugin configuration"
 msgstr ""
 
-#: inc/config.class.php:100
+#: inc/config.class.php:105
 msgid "item impacted"
+msgstr ""
+
+#: inc/config.class.php:115
+msgid "Status impacted"
+msgstr ""
+
+#: inc/config.class.php:128
+msgid "Copy solution on all ticket's son"
 msgstr ""

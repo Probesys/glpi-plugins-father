@@ -64,7 +64,7 @@ function plugin_father_getAddSearchOptions($itemtype)
          $rng1 = PluginFatherFather::TAG_SEARCH_NUM;
          $sopt[$rng1]['table'] = 'glpi_plugin_father_fathers';
          $sopt[$rng1]['field'] = 'isfather';
-         $sopt[$rng1]['name'] = __('Father', 'father');
+         $sopt[$rng1]['name'] = __('Father type', 'father');
 	 $sopt[$rng1]['datatype'] = "bool";
 	 $sopt[$rng1]['joinparams']    = array('jointype' => "itemtype_item"); 
          $sopt[$rng1]['massiveaction'] = false;

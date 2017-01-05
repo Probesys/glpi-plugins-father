@@ -125,7 +125,7 @@ class PluginFatherConfig extends CommonDBTM
 
       echo "<tr>";
       echo "<td>";
-      echo __("Copy Solution on all ticket's son", "father");
+      echo __("Copy solution on all ticket's son", "father");
       echo "</td>";
       echo "<td >";
       Dropdown::showYesNo("copy_solution",$this->fields['copy_solution']);

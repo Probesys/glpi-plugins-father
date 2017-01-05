@@ -18,12 +18,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: hook.php:57 ajax/father.php:10
-msgid "Father"
-msgstr "Père"
+msgid "Father type"
+msgstr "Type Père"
 
 #: setup.php:35
-msgid "I'm your father"
-msgstr "Je suis ton père"
+msgid "Father&Sons"
+msgstr "Père/Fils"
 
 #: front/config.form.php:33
 msgid "Please activate the plugin"
@@ -36,3 +36,11 @@ msgstr "Configuration du plugin"
 #: inc/config.class.php:100
 msgid "item impacted"
 msgstr "Objets impactés"
+
+#: inc/config.class.php:115
+msgid "Status impacted"
+msgstr "Statuts impactés "
+
+#: inc/config.class.php:128
+msgid "Copy solution on all ticket's son"
+msgstr "Copier la solution vers tout les tickets fils"
