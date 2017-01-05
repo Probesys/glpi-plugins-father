@@ -43,7 +43,7 @@ function plugin_init_father() {
   }
 
 function plugin_version_father() {
-   return array('name'       => __('Father\/Sons', 'father'),
+   return array('name'       => __('Father&Sons', 'father'),
             'version'        => '0.9',
             'author'         => 'zorm (<a href="http://www.probesys.com">Probesys</a>)',
             'homepage'       => 'http://www.probesys.com',

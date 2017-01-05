@@ -100,7 +100,7 @@ class PluginFatherFather extends CommonDBTM {
             //exit;
             $son_ticket = new Ticket();
             $config = new PluginFatherConfig();
-            if (( isset($item->input['status']) && $config->isStatusImpacted($item->input['status'])) || ( isset($item->input['solutiontypes_id']) && $config->isSolutionOk())) {
+            if (( isset($item->input['status']) && $config->isStatusImpacted($item->input['status'])) || ( isset($item->input['solutiontypes_id']) )) {
                 foreach (Ticket_Ticket::getLinkedTicketsTo($item->fields['id']) as $tick) {
                     if (isset($item->input['status']) && $item->input['status'] != $item->fields['status']) {
                         $son_update = array('id' => $tick['tickets_id'],
@@ -108,7 +108,8 @@ class PluginFatherFather extends CommonDBTM {
                             '_auto_update' => true,
                             '_massive_father' => true
                         );
-                    } else {
+                    } elseif ($config->isSolutionOk()) 
+			{
                         $son_update = array('id' => $tick['tickets_id'],
                             //'status'       => $item->input['status'],
                             'solution' => $item->input['solution'],
@@ -117,6 +118,13 @@ class PluginFatherFather extends CommonDBTM {
                             '_massive_father' => true
                         );
                     }
+		    else {
+				$son_update = array('id' => $tick['tickets_id'],
+                            'status' => 5,
+                            '_auto_update' => true,
+                            '_massive_father' => true);
+
+			}
                     $son_ticket->update($son_update);
                 }
             }

@@ -63,6 +63,8 @@ class PluginFatherConfig extends CommonDBTM
 	      $query = "CREATE TABLE `$table` (
   		`id` INT(11)    NOT NULL          AUTO_INCREMENT,
   		`father_ids` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
+  		`statut_impacted` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
+		`copy_solution` BOOLEAN NOT NULL DEFAULT '0',
             	 PRIMARY KEY (`id`)
             )
             COLLATE='utf8_unicode_ci'
@@ -145,7 +147,12 @@ class PluginFatherConfig extends CommonDBTM
    }
    
    function isSolutionOk() {
-       return in_array(5,importArrayFromDB($this->fields['statut_impacted']));
+	if (in_array(5,importArrayFromDB($this->fields['statut_impacted'])) && $this->fields['copy_solution']){
+       return True;
+	}
+	else {
+	return False;
+	}
    }
 
    function isStatusImpacted($status)
