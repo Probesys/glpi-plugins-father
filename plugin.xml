@@ -2,15 +2,13 @@
    <name>Father</name>
    <key>father</key>
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/pluginsGLPI/xxx/master/icon.png</logo>
    <description>
       <short>
 	      <fr>Ajouts d'une notion de père/fils entre les tickets.</fr>
       </short>
       <long>
          <fr>
-* Ajout d'un champ aux tickets, changements ou problémes de GLPI (étendant CommonDBTM).
-* Les objets impactés sont administrables.
+* Ajout d'un champ aux tickets de GLPI (étendant CommonDBTM).
 * Le champ "père" est visibles et modifiables en entête de l'objet (en dessous du titre).
 * Le champ "père" peuvent être recherchés et visualisés dans les listes d'objet
 
@@ -27,7 +25,7 @@
    </authors>
    <versions>
       <version>
-         <num>0.90</num>
+         <num>1.0.1</num>
          <compatibility>9.1</compatibility>
       </version>
    </versions>
