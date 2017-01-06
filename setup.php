@@ -44,7 +44,7 @@ function plugin_init_father() {
 
 function plugin_version_father() {
    return array('name'       => __('Father&Sons', 'father'),
-            'version'        => '0.9',
+            'version'        => '1.0.1',
             'author'         => 'zorm (<a href="http://www.probesys.com">Probesys</a>)',
             'homepage'       => 'http://www.probesys.com',
             'license'        => '<a href="../plugins/father/LICENSE" target="_blank">GPLv3</a>',
