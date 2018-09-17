@@ -43,7 +43,7 @@ function plugin_init_father() {
 
 function plugin_version_father() {
    return array('name'       => __('Father&Sons', 'father'),
-            'version'        => '1.0.1',
+            'version'        => '1.0.2',
             'author'         => 'zorm (<a href="http://www.probesys.com">Probesys</a>)',
             'homepage'       => 'https://www.probesys.com',
             'license'        => '<a href="../plugins/father/LICENSE" target="_blank">AGPLv3</a>',
