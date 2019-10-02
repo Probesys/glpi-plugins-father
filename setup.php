@@ -43,19 +43,19 @@ function plugin_init_father() {
 
 function plugin_version_father() {
    return array('name'       => __('Father&Sons', 'father'),
-            'version'        => '1.0.2',
+            'version'        => '1.1',
             'author'         => 'zorm (<a href="http://www.probesys.com">Probesys</a>)',
             'homepage'       => 'https://www.probesys.com',
             'license'        => '<a href="../plugins/father/LICENSE" target="_blank">AGPLv3</a>',
-            'minGlpiVersion' => "0.90");
+            'minGlpiVersion' => "9.4");
 }
 
 /**
  * Check plugin's prerequisites before installation
  */
 function plugin_father_check_prerequisites() {
-   if (version_compare(GLPI_VERSION,'0.90','lt')) {
-      echo __('This plugin requires GLPI >= 0.90');
+   if (version_compare(GLPI_VERSION,'9.4','lt')) {
+      echo __('This plugin requires GLPI >= 9.4');
    } else {
       return true;
    }
