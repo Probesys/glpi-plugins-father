@@ -15,7 +15,7 @@ class PluginFatherFather extends CommonDBTM {
 
 		$table = getTableForItemType(__CLASS__);
 
-		if (!TableExists($table)) {
+		if (!$DB->TableExists($table)) {
 			$query = "CREATE TABLE IF NOT EXISTS `$table` (
 				`id` INT(11) NOT NULL AUTO_INCREMENT,
 				`isfather` BOOLEAN NOT NULL DEFAULT '0',

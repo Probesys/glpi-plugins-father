@@ -34,7 +34,9 @@ class PluginFatherConfig extends CommonDBTM
 	 */
 	function __construct()
 	{
-		if (TableExists($this->getTable())) {
+        global $DB;
+
+		if ($DB->TableExists($this->getTable())) {
 			$this->getFromDB(1);
 		}
 	}
@@ -59,7 +61,7 @@ class PluginFatherConfig extends CommonDBTM
 
 		$table = getTableForItemType(__CLASS__);
 
-		if (!TableExists($table)) {
+		if (!$DB->TableExists($table)) {
 			$query = "CREATE TABLE `$table` (
 				`id` INT(11)    NOT NULL          AUTO_INCREMENT,
 				`father_ids` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
