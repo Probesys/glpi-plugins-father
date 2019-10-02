@@ -1,4 +1,13 @@
 <?php
+
+// Version of the plugin
+define('PLUGIN_FATHER_VERSION', "1.1");
+// Minimal GLPI version, inclusive
+define ("PLUGIN_FATHER_GLPI_MIN_VERSION", "9.4");
+// Maximum GLPI version, exclusive
+define ("PLUGIN_FATHER_GLPI_MAX_VERSION", "9.5");
+
+
 /**
  * Check plugin's config before activation
  */
@@ -43,19 +52,19 @@ function plugin_init_father() {
 
 function plugin_version_father() {
    return array('name'       => __('Father&Sons', 'father'),
-            'version'        => '1.1',
-            'author'         => 'zorm (<a href="http://www.probesys.com">Probesys</a>)',
+            'version'        => PLUGIN_FATHER_VERSION,
+            'author'         => '<a href="http://www.probesys.com">PROBESYS</a>',
             'homepage'       => 'https://www.probesys.com',
             'license'        => '<a href="../plugins/father/LICENSE" target="_blank">AGPLv3</a>',
-            'minGlpiVersion' => "9.4");
+            'minGlpiVersion' => PLUGIN_FATHER_GLPI_MIN_VERSION);
 }
 
 /**
  * Check plugin's prerequisites before installation
  */
 function plugin_father_check_prerequisites() {
-   if (version_compare(GLPI_VERSION,'9.4','lt')) {
-      echo __('This plugin requires GLPI >= 9.4');
+   if (version_compare(GLPI_VERSION, PLUGIN_FATHER_GLPI_MIN_VERSION, 'lt') || version_compare(GLPI_VERSION, PLUGIN_FATHER_GLPI_MAX_VERSION, 'ge')) {
+      echo __('This plugin requires GLPI >= ' . PLUGIN_FATHER_GLPI_MIN_VERSION . ' and GLPI < ' . PLUGIN_FATHER_GLPI_MAX_VERSION . '<br>');
    } else {
       return true;
    }
