@@ -1,7 +1,7 @@
 <?php
 
 // Version of the plugin
-define('PLUGIN_FATHER_VERSION', "1.1");
+define('PLUGIN_FATHER_VERSION', "1.1.1");
 // Minimal GLPI version, inclusive
 define ("PLUGIN_FATHER_GLPI_MIN_VERSION", "9.4");
 // Maximum GLPI version, exclusive
@@ -38,14 +38,14 @@ function plugin_init_father() {
     }
 
     if ($config->isOk(0)){
-      $PLUGIN_HOOKS['pre_item_update']['father']['Ticket'] = array('PluginFatherFather', 'beforeUpdate');;
+      $PLUGIN_HOOKS['pre_item_update']['father']['Ticket'] = array('PluginFatherFather', 'beforeUpdate');
     }
     if ($config->isOk(1)){
-      $PLUGIN_HOOKS['pre_item_update']['father']['Problem'] = array('PluginFatherFather', 'beforeUpdate');;
+      $PLUGIN_HOOKS['pre_item_update']['father']['Problem'] = array('PluginFatherFather', 'beforeUpdate');
     }
 
     if ($config->isOk(2)){
-      $PLUGIN_HOOKS['pre_item_update']['father']['Change'] = array('PluginFatherFather', 'beforeUpdate');;
+      $PLUGIN_HOOKS['pre_item_update']['father']['Change'] = array('PluginFatherFather', 'beforeUpdate');
     }
   }
 }

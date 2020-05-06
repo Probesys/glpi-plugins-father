@@ -70,7 +70,7 @@ class PluginFatherConfig extends CommonDBTM
 				PRIMARY KEY (`id`)
 					)
 					COLLATE='utf8_unicode_ci'
-					ENGINE=MyISAM";
+					ENGINE=InnoDB";
 			$DB->query($query) or die($DB->error());
 
 
