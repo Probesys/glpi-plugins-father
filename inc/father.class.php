@@ -25,7 +25,7 @@ class PluginFatherFather extends CommonDBTM {
 				UNIQUE INDEX `unicity` (`itemtype`, `items_id`, `isfather`)
 					)
 					COLLATE='utf8_unicode_ci'
-					ENGINE=MyISAM";
+					ENGINE=InnoDB";
 			$DB->query($query) or die($DB->error());
 		}
 
