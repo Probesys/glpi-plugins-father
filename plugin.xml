@@ -11,7 +11,8 @@
          <fr
         ><![CDATA[* Ajout d'un champ aux tickets de GLPI (étendant CommonDBTM).
         * Le champ "père" est visibles et modifiables en entête de l'objet (en dessous du titre).
-        * Le champ "père" peuvent être recherchés et visualisés dans les listes d'objet
+        * Le champ "père" peut être recherché et visualisé dans les listes d'objet
+        * La modification du status d'un ticket père engendre l'affectation du nouveau status pour les tickets liés ( selon paramétrage )
         ]]>
          </fr>
       </long>
