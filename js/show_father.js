@@ -54,6 +54,7 @@ function formatOption(option) {
 }
 
 function showFathers() {
+    //debugger;
    var str = document.location.href.substr(document.location.href.search('/front/') + 7);
    var itemtype = str.substr(0, str.search('.form.php'));
 
@@ -108,13 +109,11 @@ $(document).ready(function() {
    $(".ui-tabs-panel:visible").find(".headerRow:visible").ready(function() {
       showFathers();
    });
-
    $("#tabspanel + div.ui-tabs").on("tabsload", function( event, ui ) {
       //check if we're on the main tab...
       var current_glpi_tab = $('div.ui-tabs li.ui-tabs-active a')
         .attr('href')
         .match(/&_glpi_tab=.+\$(.*)&id=/)[1];
-
       if (current_glpi_tab === 'main') {
          showFathers();
       }

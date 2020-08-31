@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('GLPI_ROOT')) {
-	die("Sorry. You can't access directly to this file");
+    die("Sorry. You can't access directly to this file");
 }
 
 /**
@@ -9,60 +9,58 @@ if (!defined('GLPI_ROOT')) {
  */
 class PluginFatherConfig extends CommonDBTM
 {
+    public static $rightname = "plugin_father";
 
-	static $rightname = "plugin_father";
+    /**
+     * @param bool $update
+     * @return null|PluginFatherConfig
+     */
+    public static function getConfig($update = false)
+    {
+        static $config = null;
 
-	/**
-	 * @param bool $update
-	 * @return null|PluginFatherConfig
-	 */
-	static function getConfig($update = false)
-	{
-		static $config = null;
+        if (is_null($config)) {
+            $config = new self();
+        }
+        if ($update) {
+            $config->getFromDB(1);
+        }
+        return $config;
+    }
 
-		if (is_null($config)) {
-			$config = new self();
-		}
-		if ($update) {
-			$config->getFromDB(1);
-		}
-		return $config;
-	}
-
-	/**
-	 * PluginFatherConfig constructor.
-	 */
-	function __construct()
-	{
+    /**
+     * PluginFatherConfig constructor.
+     */
+    public function __construct()
+    {
         global $DB;
 
-		if ($DB->TableExists($this->getTable())) {
-			$this->getFromDB(1);
-		}
-	}
+        if ($DB->TableExists($this->getTable())) {
+            $this->getFromDB(1);
+        }
+    }
+
+    /**
+     * @param string $interface
+     * @return array
+     */
+    public function getRights($interface = 'central')
+    {
+        $values = parent::getRights();
+
+        unset($values[CREATE], $values[DELETE], $values[PURGE]);
+        return $values;
+    }
+
+    public static function install(Migration $migration)
+    {
+        global $DB;
 
 
-	/**
-	 * @param string $interface
-	 * @return array
-	 */
-	function getRights($interface = 'central')
-	{
+        $table = getTableForItemType(__CLASS__);
 
-		$values = parent::getRights();
-
-		unset($values[CREATE], $values[DELETE], $values[PURGE]);
-		return $values;
-	}
-
-	public static function install(Migration $migration) {
-		global $DB;
-
-
-		$table = getTableForItemType(__CLASS__);
-
-		if (!$DB->TableExists($table)) {
-			$query = "CREATE TABLE `$table` (
+        if (!$DB->TableExists($table)) {
+            $query = "CREATE TABLE `$table` (
 				`id` INT(11)    NOT NULL          AUTO_INCREMENT,
 				`father_ids` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
 				`statut_impacted` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -71,115 +69,108 @@ class PluginFatherConfig extends CommonDBTM
 					)
 					COLLATE='utf8_unicode_ci'
 					ENGINE=InnoDB";
-			$DB->query($query) or die($DB->error());
+            $DB->query($query) or die($DB->error());
 
 
-			$query = "INSERT INTO `$table` (`id`, `father_ids`) VALUES
+            $query = "INSERT INTO `$table` (`id`, `father_ids`) VALUES
 				(1, '[\"0\"]');";
 
-			$DB->query($query) or die($DB->error());
-		}
-		return true;
-	}
+            $DB->query($query) or die($DB->error());
+        }
+        return true;
+    }
 
-	public static function uninstall() {
+    public static function uninstall()
+    {
+        $query = "DROP TABLE IF EXISTS `" . getTableForItemType(__CLASS__) . "`";
+        return $GLOBALS['DB']->query($query) or die($GLOBALS['DB']->error());
+    }
 
-		$query = "DROP TABLE IF EXISTS `" . getTableForItemType(__CLASS__) . "`";
-		return $GLOBALS['DB']->query($query) or die($GLOBALS['DB']->error());
-	}
+    public function showForm()
+    {
+        $this->getFromDB(1);
+        echo "<div class='center'>";
+        echo "<form name='form' method='post' action='" . $this->getFormURL() . "'>";
+        echo "<table class='tab_cadre_fixe'>";
+        echo "<tr><th colspan='2'>" . __("Plugin configuration", "father") . "</th></tr>";
 
-
-	function showForm()
-	{
-
-		$this->getFromDB(1);
-		echo "<div class='center'>";
-		echo "<form name='form' method='post' action='" . $this->getFormURL() . "'>";
-		echo "<table class='tab_cadre_fixe'>";
-		echo "<tr><th colspan='2'>" . __("Plugin configuration", "father") . "</th></tr>";
-
-		echo "<input type='hidden' name='id' value='1'>";
+        echo "<input type='hidden' name='id' value='1'>";
 
 
 
-		echo "<tr class='tab_bg_1'>";
-		echo "<td id='show_father_td1' >";
-		echo __("item impacted", "father");
-		echo "</td>";
-		echo "<td >";
-		$item_ids = self::getValuesFatherItems();
-		Dropdown::showFromArray('father_ids', $item_ids, array('multiple' => true, 'values' => importArrayFromDB($this->fields["father_ids"])));
-		echo "</td>";
-		echo "</tr>";
+        echo "<tr class='tab_bg_1'>";
+        echo "<td id='show_father_td1' >";
+        echo __("item impacted", "father");
+        echo "</td>";
+        echo "<td >";
+        $item_ids = self::getValuesFatherItems();
+        Dropdown::showFromArray('father_ids', $item_ids, ['multiple' => true, 'values' => importArrayFromDB($this->fields["father_ids"])]);
+        echo "</td>";
+        echo "</tr>";
 
-		echo "<tr>";
-		echo "<td>";
-		echo __("Status impacted", "father");
-		echo "</td>";
-		echo "<td >";
-		$status_imp = Ticket::getAllStatusArray();
-		Dropdown::showFromArray('statut_impacted', $status_imp, array('multiple' => true, 'values' => importArrayFromDB($this->fields["statut_impacted"])));
+        echo "<tr>";
+        echo "<td>";
+        echo __("Status impacted", "father");
+        echo "</td>";
+        echo "<td >";
+        $status_imp = Ticket::getAllStatusArray();
+        Dropdown::showFromArray('statut_impacted', $status_imp, ['multiple' => true, 'values' => importArrayFromDB($this->fields["statut_impacted"])]);
 
-		echo "</td>";
-		echo "</tr>";
-
-
-
-		echo "<tr>";
-		echo "<td>";
-		echo __("Copy solution on all ticket's son", "father");
-		echo "</td>";
-		echo "<td >";
-		Dropdown::showYesNo("copy_solution",$this->fields['copy_solution']);
-
-		echo "</td>";
-		echo "</tr>";
-
-
-		echo "<tr class='tab_bg_1' align='center'>";
-		echo "<tr class='tab_bg_1' align='center'>";
-		echo "<td colspan='2' align='center'>";
-		echo "<input type='submit' name='update' value=\"" . _sx("button", "Post") . "\" class='submit' >";
-		echo "</td>";
-		echo "</tr>";
-
-		echo "</table>";
-		Html::closeForm();
-		echo "</div>";
-	}
-
-	function isSolutionOk() {
-		if (in_array(5,importArrayFromDB($this->fields['statut_impacted'])) && $this->fields['copy_solution']){
-			return True;
-		}
-		else {
-			return False;
-		}
-	}
-
-	function isStatusImpacted($status)
-	{
-		return in_array($status,importArrayFromDB($this->fields['statut_impacted']));
-	}
-
-	static function getValuesFatherItems()
-	{
-
-		$values[0] = __("Ticket");
-		//      $values[1] = __("Problem");
-		//      $values[2] = __("Change");
-		return $values;   
-	}
-	/**
-	 * @return array
-	 */
-	public function isOk($type)
-	{
-		return in_array($type,(importArrayFromDB($this->fields['father_ids'])));
-
-	}
+        echo "</td>";
+        echo "</tr>";
 
 
 
+        echo "<tr>";
+        echo "<td>";
+        echo __("Copy solution on all ticket's son", "father");
+        echo "</td>";
+        echo "<td >";
+        Dropdown::showYesNo("copy_solution", $this->fields['copy_solution']);
 
+        echo "</td>";
+        echo "</tr>";
+
+
+        echo "<tr class='tab_bg_1' align='center'>";
+        echo "<tr class='tab_bg_1' align='center'>";
+        echo "<td colspan='2' align='center'>";
+        echo "<input type='submit' name='update' value=\"" . _sx("button", "Post") . "\" class='submit' >";
+        echo "</td>";
+        echo "</tr>";
+
+        echo "</table>";
+        Html::closeForm();
+        echo "</div>";
+    }
+
+    public function isSolutionOk()
+    {
+        if (in_array(5, importArrayFromDB($this->fields['statut_impacted'])) && $this->fields['copy_solution']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isStatusImpacted($status)
+    {
+        return in_array($status, importArrayFromDB($this->fields['statut_impacted']));
+    }
+
+    public static function getValuesFatherItems()
+    {
+        $values[0] = __("Ticket");
+        //      $values[1] = __("Problem");
+        //      $values[2] = __("Change");
+        return $values;
+    }
+
+    /**
+     * @return array
+     */
+    public function isOk($type)
+    {
+        return in_array($type, (importArrayFromDB($this->fields['father_ids'])));
+    }
 }

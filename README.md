@@ -1,1 +1,3 @@
-Plugin FATHER (pour GLPI) :
+# glpi-plugins-father
+
+Ajouts d'une notion de père/fils entre les tickets.
