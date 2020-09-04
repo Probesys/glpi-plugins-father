@@ -8,10 +8,10 @@ define("PLUGIN_FATHER_GLPI_MIN_VERSION", "9.4");
 define("PLUGIN_FATHER_GLPI_MAX_VERSION", "9.6");
 
 if (!defined("PLUGIN_FATHER_DIR")) {
-   define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("groupcategory"));
+   define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("father"));
 }
 if (!defined("PLUGIN_FATHER_WEB_DIR")) {
-   define("PLUGIN_FATHER_WEB_DIR", Plugin::getWebDir("groupcategory"));
+   define("PLUGIN_FATHER_WEB_DIR", Plugin::getWebDir("father"));
 }
 
 /**
