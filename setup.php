@@ -6,7 +6,13 @@ define('PLUGIN_FATHER_VERSION', "1.2.0");
 define("PLUGIN_FATHER_GLPI_MIN_VERSION", "9.4");
 // Maximum GLPI version, exclusive
 define("PLUGIN_FATHER_GLPI_MAX_VERSION", "9.6");
-define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("father"));
+
+if (!defined("PLUGIN_FATHER_DIR")) {
+   define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("groupcategory"));
+}
+if (!defined("PLUGIN_FATHER_WEB_DIR")) {
+   define("PLUGIN_FATHER_WEB_DIR", Plugin::getWebDir("groupcategory"));
+}
 
 /**
  * Check plugin's config before activation
