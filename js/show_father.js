@@ -58,15 +58,21 @@ function showFathers() {
    var str = document.location.href.substr(document.location.href.search('/front/') + 7);
    var itemtype = str.substr(0, str.search('.form.php'));
 
-   if (location.pathname.indexOf('plugins') > 0) {
+   if (location.pathname.indexOf('plugins') > 0 || location.pathname.indexOf('marketplace') > 0) {
       // get plugin name :
-      str = document.location.href.substr(document.location.href.search('/plugins/') + 9);
+      if (location.pathname.indexOf('plugins') > 0) {
+        str = document.location.href.substr(document.location.href.search('/plugins/') + 9);
+      }
+      if (location.pathname.indexOf('marketplace') > 0) {
+        str = document.location.href.substr(document.location.href.search('/marketplace/') + 9);
+      }
       var plugin_name = str.substr(0, str.search('/front/'));
 
       itemtype = 'Plugin' + upperFirst(plugin_name) + upperFirst(itemtype);
 
       urlAjax = "../../father/ajax/father.php";
    } else {
+      // TODO manage url if plugin is in the marketplaceDirectory 
       urlAjax = "../plugins/father/ajax/father.php";
    }
 

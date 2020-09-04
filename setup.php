@@ -6,6 +6,7 @@ define('PLUGIN_FATHER_VERSION', "1.2.0");
 define("PLUGIN_FATHER_GLPI_MIN_VERSION", "9.4");
 // Maximum GLPI version, exclusive
 define("PLUGIN_FATHER_GLPI_MAX_VERSION", "9.6");
+define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("father"));
 
 /**
  * Check plugin's config before activation
@@ -58,7 +59,7 @@ function plugin_version_father()
         'version' => PLUGIN_FATHER_VERSION,
         'author' => '<a href="https://www.probesys.com">PROBESYS</a>',
         'homepage' => 'https://github.com/Probesys/glpi-plugins-father',
-        'license' => '<a href="../plugins/father/LICENSE" target="_blank">AGPLv3</a>',
+        'license' => '<a href="'. Plugin::getPhpDir('father', false).'/LICENSE" target="_blank">AGPLv3</a>',
         'minGlpiVersion' => PLUGIN_FATHER_GLPI_MIN_VERSION
     ];
 }
