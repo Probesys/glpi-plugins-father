@@ -1,0 +1,52 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Father package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid   ""
+msgstr  "Project-Id-Version: Father 1.2.0RC1\n"
+        "Report-Msgid-Bugs-To: contact@probesys.com\n"
+        "POT-Creation-Date: 2020-09-23 17:21+0200\n"
+        "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+        "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+        "Language-Team: LANGUAGE <LL@li.org>\n"
+        "Language: \n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=CHARSET\n"
+        "Content-Transfer-Encoding: 8bit\n"
+
+#: hook.php:65 ajax/father.php:11
+msgctxt "father"
+msgid   "Father type"
+msgstr  ""
+
+#: setup.php:64
+msgctxt "father"
+msgid   "Father&Sons"
+msgstr  ""
+
+#: front/config.form.php:33
+msgctxt "father"
+msgid   "Please activate the plugin"
+msgstr  ""
+
+#: inc/config.class.php:95
+msgctxt "father"
+msgid   "Plugin configuration"
+msgstr  ""
+
+#: inc/config.class.php:103
+msgctxt "father"
+msgid   "item impacted"
+msgstr  ""
+
+#: inc/config.class.php:113
+msgctxt "father"
+msgid   "Status impacted"
+msgstr  ""
+
+#: inc/config.class.php:126
+msgctxt "father"
+msgid   "Copy solution on all ticket's son"
+msgstr  ""
