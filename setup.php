@@ -1,11 +1,11 @@
 <?php
 
 // Version of the plugin
-define('PLUGIN_FATHER_VERSION', "1.2.0");
+define('PLUGIN_FATHER_VERSION', '1.2.0RC1');
 // Minimal GLPI version, inclusive
-define("PLUGIN_FATHER_GLPI_MIN_VERSION", "9.4");
+define('PLUGIN_FATHER_GLPI_MIN_VERSION', '9.4');
 // Maximum GLPI version, exclusive
-define("PLUGIN_FATHER_GLPI_MAX_VERSION", "9.6");
+define('PLUGIN_FATHER_GLPI_MAX_VERSION', '9.6');
 
 if (!defined("PLUGIN_FATHER_DIR")) {
    define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("father"));
