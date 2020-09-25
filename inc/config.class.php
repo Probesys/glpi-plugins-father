@@ -171,6 +171,6 @@ class PluginFatherConfig extends CommonDBTM
      */
     public function isOk($type)
     {
-        return in_array($type, (importArrayFromDB($this->fields['father_ids'])));
+        return (array_key_exists('father_ids', $this->fields) && in_array($type, (importArrayFromDB($this->fields['father_ids']))));
     }
 }
