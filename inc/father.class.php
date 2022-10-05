@@ -114,7 +114,7 @@ class PluginFatherFather extends CommonDBTM
                         //echo $item->input['status'] ."!=". $item->fields['status']." // ".$test_ticket->fields['status'];
                         //echo $item->input['solutiontypes_id'];
                         //exit;
-                        if (isset($item->input['status']) && $item->input['status'] != $item->fields['status'] && $test_ticket->fields['status'] != 5 && $test_ticket->fields['status'] != 6) {
+                        if (isset($item->input['status']) && $item->input['status'] != $item->fields['status'] && !in_array($test_ticket->fields['status'],[5,6]) ) {
                             $son_update = [
                                 'id' => $tick['tickets_id'],
                                 'status' => $item->input['status'],
@@ -122,7 +122,7 @@ class PluginFatherFather extends CommonDBTM
                                 '_massive_father' => true
                             ];
                         } elseif (isset($item->input['solutiontypes_id']) && $item->input['solutiontypes_id'] != 0) {
-                            if ($config->isSolutionOk() && $test_ticket->fields['status'] != 5 && $test_ticket->fields['status'] != 6) {
+                            if ($config->isSolutionOk() && !in_array($test_ticket->fields['status'],[5,6])) {
                                 $son_update = [
                                     'id' => $tick['tickets_id'],
                                     //'status'       => $item->input['status'],
