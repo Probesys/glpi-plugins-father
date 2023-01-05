@@ -61,7 +61,7 @@ class PluginFatherConfig extends CommonDBTM
 
         if (!$DB->TableExists($table)) {
             $query = "CREATE TABLE `$table` (
-				`id` INT(11)    NOT NULL          AUTO_INCREMENT,
+				`id` INT(11) NOT NULL AUTO_INCREMENT,
 				`father_ids` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
 				`statut_impacted` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
 				`copy_solution` BOOLEAN NOT NULL DEFAULT '0',
@@ -89,18 +89,17 @@ class PluginFatherConfig extends CommonDBTM
     public function showForm()
     {
         $this->getFromDB(1);
-        echo "<div class='center'>";
         echo "<form name='form' method='post' action='" . $this->getFormURL() . "'>";
+        echo "<input type='hidden' name='id' value='1'>";
+        
+        echo "<div class='center'>";
         echo "<table class='tab_cadre_fixe'>";
+        echo '<tbody>';
         echo "<tr><th colspan='2'>" . __("Plugin configuration", "father") . "</th></tr>";
 
-        echo "<input type='hidden' name='id' value='1'>";
-
-
-
-        echo "<tr class='tab_bg_1'>";
-        echo "<td id='show_father_td1' >";
-        echo __("item impacted", "father");
+        echo "<tr class='tab_bg_2'>";
+        echo "<td id='show_father_td1' width='50%'>";
+        echo "<label for='father_ids'>".__("item impacted", "father")."</label>";
         echo "</td>";
         echo "<td >";
         $item_ids = self::getValuesFatherItems();
@@ -110,38 +109,33 @@ class PluginFatherConfig extends CommonDBTM
 
         echo "<tr>";
         echo "<td>";
-        echo __("Status impacted", "father");
+        echo "<label for='statut_impacted'>".__("Status impacted", "father")."</label>";
         echo "</td>";
         echo "<td >";
         $status_imp = Ticket::getAllStatusArray();
         Dropdown::showFromArray('statut_impacted', $status_imp, ['multiple' => true, 'values' => importArrayFromDB($this->fields["statut_impacted"])]);
-
         echo "</td>";
         echo "</tr>";
-
-
 
         echo "<tr>";
         echo "<td>";
-        echo __("Copy solution on all ticket's son", "father");
+        echo "<label for='copy_solution'>".__("Copy solution on all ticket's son", "father")."</label>";
         echo "</td>";
         echo "<td >";
         Dropdown::showYesNo("copy_solution", $this->fields['copy_solution']);
-
         echo "</td>";
         echo "</tr>";
-
-
-        echo "<tr class='tab_bg_1' align='center'>";
-        echo "<tr class='tab_bg_1' align='center'>";
-        echo "<td colspan='2' align='center'>";
+        
+        echo "<tr class='tab_bg_2'>";
+        echo "<td colspan='2' class='center'>";
         echo "<input type='submit' name='update' value=\"" . _sx("button", "Post") . "\" class='submit' >";
         echo "</td>";
         echo "</tr>";
 
+        echo '<tbody>';
         echo "</table>";
-        Html::closeForm();
         echo "</div>";
+        Html::closeForm();
     }
 
     public function isSolutionOk()

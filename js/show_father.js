@@ -54,8 +54,9 @@ function formatOption(option) {
 }
 
 function showFathers() {
-    //debugger;
+   //debugger;
    var str = document.location.href.substr(document.location.href.search('/front/') + 7);
+   
    var itemtype = str.substr(0, str.search('.form.php'));
 
    if (location.pathname.indexOf('plugins') > 0 || location.pathname.indexOf('marketplace') > 0) {
@@ -100,9 +101,10 @@ function showFathers() {
              "id"       : id,
              "action"   : "father_values"},
       success: function(msg){
-         if ($("#mainformtable").find("[name='plugin_father_father_itemtype']").length == 0) {
-            $("#mainformtable tr:first").after(msg + hidden_fields);
-            $("#mainformtable .chosen-select-no-results").select2({
+          console.log(msg);
+         if ($("#item-main").find("[name='plugin_father_father_itemtype']").length == 0) {
+            $("#item-main .form-field:first").after(msg + hidden_fields);
+            $("#item-main .chosen-select-no-results").select2({
                 'formatResult': formatOption,
                 'formatSelection': formatOption
             });
@@ -112,7 +114,8 @@ function showFathers() {
 }
 
 $(document).ready(function() {
-   $(".ui-tabs-panel:visible").find(".headerRow:visible").ready(function() {
+    //debugger;
+   $(".tab-pane.active.show").find("#itil-object-container").ready(function() {
       showFathers();
    });
    $("#tabspanel + div.ui-tabs").on("tabsload", function( event, ui ) {

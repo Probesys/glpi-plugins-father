@@ -5,7 +5,7 @@ define('PLUGIN_FATHER_VERSION', '1.3.0');
 // Minimal GLPI version, inclusive
 define('PLUGIN_FATHER_GLPI_MIN_VERSION', '9.4');
 // Maximum GLPI version, exclusive
-define('PLUGIN_FATHER_GLPI_MAX_VERSION', '9.6');
+define('PLUGIN_FATHER_GLPI_MAX_VERSION', '11');
 
 if (!defined("PLUGIN_FATHER_DIR")) {
    define('PLUGIN_FATHER_DIR', Plugin::getPhpDir("father"));
@@ -44,7 +44,6 @@ function plugin_init_father()
         ) {
             $PLUGIN_HOOKS['add_javascript']['father'][] = 'js/show_father.js';
         }
-
         if ($config->isOk(0)) {
             $PLUGIN_HOOKS['pre_item_update']['father']['Ticket'] = ['PluginFatherFather', 'beforeUpdate'];
         }

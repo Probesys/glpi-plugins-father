@@ -54,7 +54,8 @@ class PluginFatherFather extends CommonDBTM
 
     public static function fatherYesNo($options = [])
     {
-        if ($father_id = self::getFatherFromDB($_REQUEST['id'], $_REQUEST['itemtype'])) {
+        $father_id = self::getFatherFromDB($_REQUEST['id'], $_REQUEST['itemtype']);
+        if ($father_id) {
             Dropdown::showYesNo("father", $father_id['isfather']);
         } else {
             Dropdown::showYesNo("father");
@@ -63,8 +64,14 @@ class PluginFatherFather extends CommonDBTM
 
     public static function getFatherFromDB($item_id, $itemtype)
     {
-        if ($data_father = getAllDatasFromTable("glpi_plugin_father_fathers", '`items_id` = ' . $item_id . ' and itemtype="' . strtolower($itemtype) . '"')) {
-            return reset($data_father);
+        global $DB;
+        $req = $DB->request([
+            'SELECT' => '*',
+            'FROM'  => 'glpi_plugin_father_fathers',
+            'WHERE' => ['items_id'=>$item_id, 'itemtype'=> strtolower($itemtype)]
+        ]);
+        foreach ($req as $row) {
+            return $row;
         }
 
         return false;
