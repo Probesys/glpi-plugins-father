@@ -23,7 +23,7 @@ if ($plugin->isActivated("father")) {
         Html::redirect($_SERVER['HTTP_REFERER']);
     } else {
         Html::header(PluginFatherConfig::getTypeName(), '', "plugins", "father");
-        $config->showForm();
+        $config->showForm("fatherConfig");
         Html::footer();
     }
 } else {

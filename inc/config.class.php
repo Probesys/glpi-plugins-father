@@ -86,10 +86,11 @@ class PluginFatherConfig extends CommonDBTM
         return $GLOBALS['DB']->query($query) or die($GLOBALS['DB']->error());
     }
 
-    public function showForm()
+    public function showForm($ID, array $options = [])
     {
+        //$this->initForm($ID, $options);
         $this->getFromDB(1);
-        echo "<form name='form' method='post' action='" . $this->getFormURL() . "'>";
+        echo "<form name='form' id='".$ID."' method='post' action='" . $this->getFormURL() . "'>";
         echo "<input type='hidden' name='id' value='1'>";
         
         echo "<div class='center'>";
