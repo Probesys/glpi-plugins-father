@@ -107,41 +107,45 @@ class PluginFatherFather extends CommonDBTM
             $isfather = self::isFather($item->fields['id'], get_class($item));
         }
         $config = new PluginFatherConfig();
-        $a = (isset($item->input['status']) && $config->isStatusImpacted($item->input['status']));
-        $b = (isset($item->input['solutiontypes_id']) && $config->isSolutionOk());
-        $c = $config->isSolutionOk();
-        if ((isset($item->input['status']) || isset($item->input['solutiontypes_id'])) && $isfather && !isset($item->input['_massive_father'])) {
+        
+        if ((isset($item->input['status'])) && $isfather && !isset($item->input['_massive_father'])) {
             $son_ticket = new Ticket();
             $test_ticket = new Ticket();
-            $config = new PluginFatherConfig();
-            if ((isset($item->input['status']) && $config->isStatusImpacted($item->input['status'])) || (isset($item->input['solutiontypes_id']))) {
+
+            if ((isset($item->input['status']) && $config->isStatusImpacted($item->input['status']))) {
                 foreach (Ticket_Ticket::getLinkedTicketsTo($item->fields['id']) as $tick) {
                     $test_ticket->getFromDB($tick['tickets_id']);
                     if ((isset($item->input['status']) && Ticket::isAllowedStatus($test_ticket->fields['status'], $item->input['status'])) || (isset($item->input['solutiontypes_id']) && Ticket::isAllowedStatus($test_ticket->fields['status'], 5))) {
-                        //echo $item->input['status'] ."!=". $item->fields['status']." // ".$test_ticket->fields['status'];
-                        //echo $item->input['solutiontypes_id'];
-                        //exit;
-                        if (isset($item->input['status']) && $item->input['status'] != $item->fields['status'] && !in_array($test_ticket->fields['status'],[5,6]) ) {
+                        if (isset($item->input['status']) && $item->input['status'] != $item->fields['status'] && !in_array($item->input['status'],[5,6]) ) {
                             $son_update = [
                                 'id' => $tick['tickets_id'],
                                 'status' => $item->input['status'],
                                 '_auto_update' => true,
                                 '_massive_father' => true
                             ];
-                        } elseif (isset($item->input['solutiontypes_id']) && $item->input['solutiontypes_id'] != 0) {
-                            if ($config->isSolutionOk() && !in_array($test_ticket->fields['status'],[5,6])) {
-                                $son_update = [
-                                    'id' => $tick['tickets_id'],
-                                    //'status'       => $item->input['status'],
-                                    'solution' => $item->input['solution'],
-                                    'solutiontypes_id' => $item->input['solutiontypes_id'],
-                                    '_auto_update' => true,
-                                    '_massive_father' => true
+                        } else {   
+                            if ($config->isSolutionOk() && $item->input['status'] != $item->fields['status'] && in_array($item->input['status'],[5,6]) && isset($_POST['solutiontypes_id']) && isset($_POST['itemtype']) && $_POST['itemtype']=="Ticket" && $_POST['items_id'] == $item->fields['id']) {
+                                // copy solution
+                                $em = new ITILSolution();
+                                $inputSolution = [
+                                    'itemtype' => $test_ticket::getType(),
+                                    'items_id' => $tick['tickets_id'],
+                                    'content' => $_POST['content'],
+                                    'solutiontemplates_id' => $_POST['solutiontemplates_id'],
                                 ];
+                                $em->add($inputSolution);
+//                                $son_update = [
+//                                    'id' => $tick['tickets_id'],
+//                                    //'status'       => $item->input['status'],
+//                                    'solution' => $item->input['solution'],
+//                                    'solutiontypes_id' => $item->input['solutiontypes_id'],
+//                                    '_auto_update' => true,
+//                                    '_massive_father' => true
+//                                ];
                             } else {
                                 $son_update = [
                                     'id' => $tick['tickets_id'],
-                                    'status' => 5,
+                                    'status' => $item->input['status'],
                                     '_auto_update' => true,
                                     '_massive_father' => true];
                             }
