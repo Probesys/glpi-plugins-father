@@ -1,7 +1,7 @@
 <?php
 
 // Version of the plugin
-define('PLUGIN_FATHER_VERSION', '1.4.1');
+define('PLUGIN_FATHER_VERSION', '1.4.2');
 // Minimal GLPI version, inclusive
 define('PLUGIN_FATHER_GLPI_MIN_VERSION', '10');
 // Maximum GLPI version, exclusive
