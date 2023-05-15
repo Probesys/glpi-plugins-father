@@ -37,10 +37,11 @@ function plugin_init_father()
             ['addtabon' => ['PluginFatherFather']]
         );
 
-        if (
+        if ( isset($_SERVER) && (
                 ((strpos($_SERVER['REQUEST_URI'], "/ticket.form.php") !== false) && $config->isOk(0)) ||
                 ((strpos($_SERVER['REQUEST_URI'], "/problem.form.php") !== false) && $config->isOk(1)) ||
                 ((strpos($_SERVER['REQUEST_URI'], "/change.form.php") !== false) && $config->isOK(2))
+             )        
         ) {
             $PLUGIN_HOOKS['add_javascript']['father'][] = 'js/show_father.js';
         }
