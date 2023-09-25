@@ -7,9 +7,11 @@ function parseUrl(val) {
     .substr(1)
         .split("&")
         .forEach(function (item) {
-        tmp = item.split("=");
-        if (tmp[0] === val) result = decodeURIComponent(tmp[1]);
-    });
+         tmp = item.split("=");
+         if (tmp[0] === val) {
+            result = decodeURIComponent(tmp[1]);
+         }
+        });
     return result;
 }
 
@@ -56,16 +58,16 @@ function formatOption(option) {
 function showFathers() {
    //debugger;
    var str = document.location.href.substr(document.location.href.search('/front/') + 7);
-   
+
    var itemtype = str.substr(0, str.search('.form.php'));
 
    if (location.pathname.indexOf('plugins') > 0 || location.pathname.indexOf('marketplace') > 0) {
       // get plugin name :
       if (location.pathname.indexOf('plugins') > 0) {
-        str = document.location.href.substr(document.location.href.search('/plugins/') + 9);
+         str = document.location.href.substr(document.location.href.search('/plugins/') + 9);
       }
       if (location.pathname.indexOf('marketplace') > 0) {
-        str = document.location.href.substr(document.location.href.search('/marketplace/') + 9);
+         str = document.location.href.substr(document.location.href.search('/marketplace/') + 9);
       }
       var plugin_name = str.substr(0, str.search('/front/'));
 
@@ -73,12 +75,12 @@ function showFathers() {
 
       urlAjax = "../../father/ajax/father.php";
    } else {
-      // TODO manage url if plugin is in the marketplaceDirectory 
+      // TODO manage url if plugin is in the marketplaceDirectory
       urlAjax = "../plugins/father/ajax/father.php";
    }
 
    // Don't show in notification :
-   if (itemtype == 'notification' ) { 
+   if (itemtype == 'notification' ) {
       return;
    }
 
@@ -98,15 +100,15 @@ function showFathers() {
       type: "POST",
       url: urlAjax,
       data: {"itemtype" : itemtype,
-             "id"       : id,
-             "action"   : "father_values"},
+         "id"       : id,
+         "action"   : "father_values"},
       success: function(msg){
-          console.log(msg);
+          //console.log(msg);
          if ($("#item-main").find("[name='plugin_father_father_itemtype']").length == 0) {
             $("#item-main .form-field:first").after(msg + hidden_fields);
             $("#item-main .chosen-select-no-results").select2({
-                'formatResult': formatOption,
-                'formatSelection': formatOption
+               'formatResult': formatOption,
+               'formatSelection': formatOption
             });
          }
       }
@@ -128,4 +130,3 @@ $(document).ready(function() {
       }
    });
 });
-
