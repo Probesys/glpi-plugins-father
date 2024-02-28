@@ -29,6 +29,11 @@
 
 include('../../../inc/includes.php');
 
+if (! isset($_GET["id"])) {
+   $_GET["id"] = 0;
+}
+//Check les droits
+Session::checkRight("config", UPDATE);
 $plugin = new Plugin();
 if ($plugin->isActivated("father")) {
     $config = new PluginFatherConfig();
