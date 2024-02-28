@@ -134,6 +134,22 @@ class PluginFatherFather extends CommonDBTM
          if ((isset($item->input['status']) && $config->isStatusImpacted($item->input['status']))) {
             foreach (Ticket_Ticket::getLinkedTicketsTo($item->fields['id']) as $tick) {
                $test_ticket->getFromDB($tick['tickets_id']);
+		    
+		//copy category
+		if ($config->copyCategory()){
+		$son_update = [
+			'id' => $tick['tickets_id'],
+			'status' => $item->input['status'],
+			'itilcategories_id' => $item->input['itilcategories_id'],
+			'_auto_update' => true,
+			'_massive_father' => true
+			];
+		}
+		    
+		if (isset($son_update)) {
+			$son_ticket->update($son_update);
+		}
+		    
                if ((isset($item->input['status']) && Ticket::isAllowedStatus($test_ticket->fields['status'], $item->input['status'])) || (isset($item->input['solutiontypes_id']) && Ticket::isAllowedStatus($test_ticket->fields['status'], 5))) {
                   if (isset($item->input['status']) && $item->input['status'] != $item->fields['status'] && !in_array($item->input['status'], [5,6])) {
                      $son_update = [
