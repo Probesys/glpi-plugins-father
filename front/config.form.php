@@ -29,6 +29,11 @@
 
 include('../../../inc/includes.php');
 
+if (! isset($_GET["id"])) {
+   $_GET["id"] = 0;
+}
+//Check les droits
+Session::checkRight("config", CREATE);
 $plugin = new Plugin();
 if ($plugin->isActivated("father")) {
     $config = new PluginFatherConfig();
@@ -44,6 +49,7 @@ if ($plugin->isActivated("father")) {
       } else {
           $_POST['statut_impacted'] = exportArrayToDB([]);
       }
+       Session::checkRight("config", UPDATE);
        $config->update($_POST);
        //Update singelton
        PluginFatherConfig::getConfig(true);

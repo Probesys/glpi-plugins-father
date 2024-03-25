@@ -87,6 +87,7 @@ class PluginFatherConfig extends CommonDBTM
 				`father_ids` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
 				`statut_impacted` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
 				`copy_solution` BOOLEAN NOT NULL DEFAULT '0',
+    				`copy_category` BOOLEAN NOT NULL DEFAULT '0',
 				PRIMARY KEY (`id`)
 					)
 					COLLATE='utf8_unicode_ci'
@@ -146,6 +147,15 @@ class PluginFatherConfig extends CommonDBTM
        echo "</td>";
        echo "</tr>";
 
+       echo "<tr>";
+       echo "<td>";
+       echo "<label for='copy_category'>".__("Copy category on all ticket's son", "father")."</label>";
+       echo "</td>";
+       echo "<td >";
+       Dropdown::showYesNo("copy_category", $this->fields['copy_category']);
+       echo "</td>";
+       echo "</tr>";
+
        echo "<tr class='tab_bg_2'>";
        echo "<td colspan='2' class='center'>";
        echo "<input type='submit' name='update' value=\"" . _sx("button", "Post") . "\" class='submit' >";
@@ -160,6 +170,14 @@ class PluginFatherConfig extends CommonDBTM
 
    public function isSolutionOk() {
       if (in_array(5, importArrayFromDB($this->fields['statut_impacted'])) && $this->fields['copy_solution']) {
+          return true;
+      } else {
+          return false;
+      }
+   }
+
+    public function copyCategory() {
+      if ($this->fields['copy_category']) {
           return true;
       } else {
           return false;
