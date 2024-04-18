@@ -84,13 +84,13 @@ class PluginFatherConfig extends CommonDBTM
       if (!$DB->TableExists($table)) {
           $query = "CREATE TABLE `$table` (
 				`id` INT(11) NOT NULL AUTO_INCREMENT,
-				`father_ids` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
-				`statut_impacted` TEXT COLLATE utf8_unicode_ci DEFAULT NULL,
+				`father_ids` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+				`statut_impacted` TEXT COLLATE utf8mb4_unicode_ci DEFAULT NULL,
 				`copy_solution` BOOLEAN NOT NULL DEFAULT '0',
     				`copy_category` BOOLEAN NOT NULL DEFAULT '0',
 				PRIMARY KEY (`id`)
 					)
-					COLLATE='utf8_unicode_ci'
+					COLLATE='utf8mb4_unicode_ci'
 					ENGINE=InnoDB";
           $DB->query($query) or die($DB->error());
 

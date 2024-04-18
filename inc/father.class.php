@@ -46,11 +46,11 @@ class PluginFatherFather extends CommonDBTM
 				`id` INT(11) NOT NULL AUTO_INCREMENT,
 				`isfather` BOOLEAN NOT NULL DEFAULT '0',
 				`items_id` INT(11) NOT NULL DEFAULT '1',
-				`itemtype` VARCHAR(255) NOT NULL DEFAULT '' COLLATE 'utf8_unicode_ci',
+				`itemtype` VARCHAR(255) NOT NULL DEFAULT '' COLLATE 'utf8mb4_unicode_ci',
 				PRIMARY KEY (`id`),
 				UNIQUE INDEX `unicity` (`itemtype`, `items_id`, `isfather`)
 					)
-					COLLATE='utf8_unicode_ci'
+					COLLATE='utf8mb4_unicode_ci'
 					ENGINE=InnoDB";
           $DB->query($query) or die($DB->error());
       }
