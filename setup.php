@@ -28,7 +28,7 @@
  */
 
 // Version of the plugin
-define('PLUGIN_FATHER_VERSION', '1.4.2');
+define('PLUGIN_FATHER_VERSION', '1.4.3');
 // Minimal GLPI version, inclusive
 define('PLUGIN_FATHER_GLPI_MIN_VERSION', '10');
 // Maximum GLPI version, exclusive
@@ -62,7 +62,7 @@ function plugin_init_father() {
            ['addtabon' => ['PluginFatherFather']]
        );
 
-      if (isset($_SERVER) && (
+      if (isset($_SERVER) && array_key_exists('REQUEST_URI', $_SERVER) && (
                ((strpos($_SERVER['REQUEST_URI'], "/ticket.form.php") !== false) && $config->isOk(0)) ||
                ((strpos($_SERVER['REQUEST_URI'], "/problem.form.php") !== false) && $config->isOk(1)) ||
                ((strpos($_SERVER['REQUEST_URI'], "/change.form.php") !== false) && $config->isOK(2))

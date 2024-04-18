@@ -92,15 +92,14 @@ class PluginFatherFather extends CommonDBTM
            'WHERE' => ['items_id'=>$item_id, 'itemtype'=> strtolower($itemtype)]
        ]);
       foreach ($req as $row) {
-          return $row;
+          return $row['isfather'];
       }
 
        return false;
    }
 
    public static function isFather($item_id, $itemtype) {
-       $fatherDB = self::getFatherFromDB($item_id, $itemtype);
-       return $fatherDB['isfather'];
+       return  self::getFatherFromDB($item_id, $itemtype);       
    }
 
    public static function beforeUpdate($item) {
