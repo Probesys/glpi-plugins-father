@@ -61,6 +61,11 @@
          <compatibility>~10.0</compatibility>
 	 <download_url>https://github.com/Probesys/glpi-plugins-father/releases/download/v1.4.3/father-1.4.3.tbz</download_url>     
       </version>
+      <version>
+         <num>1.4.4</num>
+         <compatibility>~10.0</compatibility>
+	 <download_url>https://github.com/Probesys/glpi-plugins-father/releases/download/v1.4.4/father-1.4.4.tbz</download_url>     
+      </version>
    </versions>
    <langs>
       <lang>en_GB</lang>
