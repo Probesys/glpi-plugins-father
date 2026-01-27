@@ -1,3 +1,6 @@
+> [!CAUTION]
+> This GLPI plugin is no longer maintained and is provided as-is without warranty.
+
 # glpi-plugins-father
 
 * Ajouts d'une notion de père/fils entre les tickets.
